@@ -1,0 +1,16 @@
+
+* {
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: white;
+}
+.text-left {
+  text-align: left;
+}

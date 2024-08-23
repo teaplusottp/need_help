@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* body{
+  background-color: white;
+}
+ */
+
+
+
+/* 
+
+.home-section {
+    background-color: white;
+}
+ */
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden; /* Ẩn thanh cuộn ngang */
+    overflow-y: auto; 
+}
+.container {
+  margin: 5% auto 0;
+  max-width: 720px;
+}
+
+.tabs {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  padding-left: 0px;
+}
+
+.tabs .line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 6px;
+  border-radius: 15px;
+  background-color: tomato;
+  transition: all 0.2s ease;
+}
+
+.tab-item {
+  min-width: 80px;
+  padding: 16px 20px 11px 20px;
+  font-size: 20px;
+  text-align: center;
+  color: tomato;
+  background-color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 5px solid transparent;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.tab-icon {
+  font-size: 24px;
+  width: 32px;
+  position: relative;
+  top: 2px;
+}
+
+.tab-item:hover {
+  opacity: 1;
+  background-color: rgba(194, 53, 100, 0.05);
+  border-color: rgba(194, 53, 100, 0.1);
+}
+
+.tab-item.active {
+  opacity: 1;
+}
+
+.tab-content {
+  padding: 28px 0;
+}
+
+.tab-pane {
+  color: #333;
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.tab-pane h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+ 
+
+
+
+
+
+.modal-footer {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.modal-footer .delete-btn {
+    background-color: red; /* Tùy chỉnh màu nếu cần */
+    color: white;
+    position: absolute;
+    bottom: 10px; /* Điều chỉnh khoảng cách từ đáy */
+    left: 10px;   /* Điều chỉnh khoảng cách từ trái */
+}
+
+
+.home-section .home-content {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.home-section .home-content .bx-menu, .home-section .home-content .text {
+  color: #11101d;
+  font-size: 35px;
+}
+.home-section .home-content .bx-menu {
+  margin: 0 15px;
+}
+.home-section .home-content .text {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* .gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    margin: 5px;
+    width: 200px;
+   height: auto;
+}  
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
