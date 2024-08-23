@@ -53,10 +53,9 @@ react_lite_2/
 ## Installation
 
 ### First Run:
-![First Run Image](https://github.com/user-attachments/assets/e6ad3471-0f37-4f69-bacf-cac216d6c789)
-
+![First Run Image](![no](https://github.com/user-attachments/assets/a4a72045-085a-466b-b69e-6fd13deca01a))
 ### Then Run:
-![Then Run Image](https://github.com/user-attachments/assets/4f0039a4-ae0e-4330-a41d-184229df9ee6)
+![Then Run Image](![no](https://github.com/user-attachments/assets/3ab70dd5-8e63-49bd-adaa-76339dedaa80))
 
 Ensure you have installed all the necessary packages (cors, flask, etc.).
 
