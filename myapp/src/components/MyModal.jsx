@@ -7,6 +7,7 @@ import {
   changeBackgroundColor,
   clearCanvas,
   initializeCanvas,
+  readJsonFile
 } from '/public/script/arrow_function.js';
 
 
@@ -14,10 +15,12 @@ function MyModal() {
    useEffect(() => {
     initializeCanvas();
   }, []);
- 
+ const handleFileChange = (event) => {
+    readJsonFile(event);
+  };
   return (
     <div>
-      <input type="file" id="file-input" accept=".json" style={{display: 'none'}} />
+      <input type="file" id="file-input" accept=".json" style={{display: 'none'}}  onChange={handleFileChange}/>
       <div className="modal fade" id="textModal" tabIndex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">

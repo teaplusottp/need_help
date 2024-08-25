@@ -39,6 +39,12 @@ function removeQuery(button) {
 
 function startProcessing() {
 }
-
-
-
+function saveJsonData(jsonContent) {
+    let saveJson = [];
+    saveJson.push(jsonContent);
+    localStorage.setItem('saveJson', JSON.stringify(saveJson));
+}
+function getJson(){
+    let saveJson = JSON.parse(localStorage.getItem('saveJson')) || {};
+    return JSON.stringify(saveJson, null, 2);
+}

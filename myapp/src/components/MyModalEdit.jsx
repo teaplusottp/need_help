@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
   saveChange,
-  deleteQuery
+  deleteQuery,
+  deleteMetadata
 } from '/public/script/arrow_function.js';
 
 function MyModalEdit() {
@@ -10,6 +11,30 @@ function MyModalEdit() {
     <>
       {/* Hidden file input field */}
       <input type="file" id="file-input" accept=".json" style={{ display: 'none' }} />
+
+    {/*json modal */}
+    <div className="modal fade" id="JsonModal-edit" tabIndex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document" style={{ maxWidth: '70%' }}>
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="textModalLabel">Review your json file</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        <div className="form-group">
+          <label htmlFor="time">Content</label>
+<textarea type="text"className="form-control" rows="10" style={{ width: '1000px' }} id="Json-edit"name="time"placeholder="Your json file"required readOnly  ></textarea>
+        </div>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-danger delete-btn" onClick={deleteMetadata}>Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       {/* Text Modal */}
       <div className="modal fade" id="textModal-edit" tabIndex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true">

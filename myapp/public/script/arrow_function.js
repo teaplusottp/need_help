@@ -20,7 +20,6 @@ function updateDataByIndex(index, newContent) {
     if (index >= 0 && index < savedData.length) {
         savedData[index].line = newContent;
         localStorage.setItem('savedData', JSON.stringify(savedData));   
-        console.log("img:" + newContent);
     }
 }
 function delData(id) {
@@ -35,6 +34,14 @@ function getTypeByIndex(index) {
         return line;
     }
     return null;
+}
+export function deleteMetadata(){
+    var oldItem = document.getElementById('old');
+    if (oldItem) {
+        console.log('ẻdẻhj');
+        oldItem.remove();
+    }
+    $('#JsonModal-edit').modal('hide');
 }
 export function deleteQuery() {
     if (currentQueryElement) {
@@ -57,7 +64,9 @@ export const handleSubmenuClickOption = () => {
 document.querySelectorAll('.sub-menu a').forEach(link => {
     link.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent default link behavior
+        
         const linkText = event.target.innerText.trim().toLowerCase();
+
         if (linkText === 'text') {
             showModal('#textModal');
         } else if (linkText === 'image') {
@@ -70,6 +79,10 @@ document.querySelectorAll('.sub-menu a').forEach(link => {
     });
 });
 };
+function JsonModal(){
+    showModal('#JsonModal-edit');
+    document.getElementById("Json-edit").value = getJson();
+}
 export const handleHistorySubmenu = () => {
 document.getElementById('history-submenu').addEventListener('click', function (event) {
     if (event.target.tagName === 'A') {
@@ -77,13 +90,14 @@ document.getElementById('history-submenu').addEventListener('click', function (e
         event.preventDefault(); 
         var linkText12 = event.target.innerText.trim().toLowerCase();
         var id = linkText12.match(/\d+/);
+        if(linkText12.endsWith('.json')){
+            JsonModal();
+            return;
+        }
         var case_option=linkText12.split(':')[1].trim();
         if(case_option==='text'){
             showModal('#textModal-edit');
             var txt=getDataByIndex(id-1);
-
-            console.log(txt)
-
             document.getElementById("time-edit").value = txt[0];
             document.getElementById("place-edit").value = txt[1];
             document.getElementById("description-edit").value = txt[2];
@@ -119,12 +133,9 @@ export  const ShowOption = (e) => {
 
 function addQueryToHistory(index, type) {
     var historyMenu = document.getElementById('history-submenu');
-    // Tạo phần tử mới
     var newItem = document.createElement('li');
     newItem.innerHTML = `<a href="#" id=${index} onclick="showSelectedModal(this)"   >Query ${index} : ${type}</a>`;
-    // Thêm phần tử mới vào danh sách
     historyMenu.appendChild(newItem);
-//    addedQueries.push(index);
 }
 
 export const saveText = () => {
@@ -369,6 +380,7 @@ export const StartQuery = () => {
          const currentTime = Date.now();
             let savedData = convert(JSON.parse(localStorage.getItem('savedData')))|| [];
             let delData = JSON.parse(localStorage.getItem('delData')) || [];
+            let Json=getJson();
             let filteredData = savedData.filter((_, index) => !delData.includes(index));
         if(currentTime-lastClickTime>1000){
             fetch('http://127.0.0.1:8080/upload', {
@@ -376,7 +388,7 @@ export const StartQuery = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ data: filteredData })  // Đặt danh sách vào một đối tượng JSON
+                body: JSON.stringify({ data: filteredData,metadata:Json })  // Đặt danh sách vào một đối tượng JSON
             })
             .then(response => response.json())
             .then(data => {
@@ -391,14 +403,46 @@ export const StartQuery = () => {
 function triggerFileUpload() {  
     document.getElementById('file-input').click();
 }
-
-export const Upload=()=>{
-    document.getElementById('upload-link').addEventListener('click', function (event) {
-        event.preventDefault();
-        triggerFileUpload();
-    });
+export const readJsonFile=(event) =>{
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const contents = e.target.result;
+            try {
+                const jsonContent = JSON.parse(contents);
+                addMetaData(file.name);
+                saveJsonData(jsonContent);
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+                return "";
+            }
+        };
+        reader.readAsText(file);
+    }
+}
+export const Upload = () => {
+    const uploadLink = document.getElementById('upload-link');
+    if (uploadLink) {
+        uploadLink.removeEventListener('click', handleUploadClick);
+        uploadLink.addEventListener('click', handleUploadClick);
+    }
 }
 
+function addMetaData(name) {
+    var historyMenu = document.getElementById('history-submenu');
+    var oldItem = document.getElementById('old');
+    if (oldItem) {
+        oldItem.remove();
+    }
+    var newItem = document.createElement('li');
+    newItem.innerHTML = `<a href="#" onclick="showSelectedModal(this)" id='old'>${name}</a>`;
+    historyMenu.appendChild(newItem);
+}
+const handleUploadClick = (event) => {
+    event.preventDefault();
+    triggerFileUpload();
+}
 function addToQuery(card,filepath){
    card.addEventListener("click", function() {
         if(card.classList.contains('clicked')){
