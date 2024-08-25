@@ -20,7 +20,8 @@ react_lite_2/
 │   └── static/
 │       ├── input/  # Input query files
 │       │   ├── color.txt
-│       │   └── text.txt
+│       │   ├── text.txt
+|       |   └── metadata.json # your metadata input
 │       └── output/  # Output directory (to be updated to read images from Google Cloud)
 ├── myapp/
 │   ├── eslint.config.js
